@@ -6,45 +6,51 @@ import (
 )
 
 var (
-	loc = &time.Location{}
-	t1  = time.Date(2006, 1, 2, 15, 4, 5, 0, loc)
+	loc = time.Now().Location()
+	t1  = time.Date(2015, 7, 1, 15, 4, 30, 0, loc)
 )
 
 func TestMinute(t *testing.T) {
-	nextMin := time.Date(2006, 1, 2, 15, 5, 0, 0, loc)
-	tmp := Minute(t1)
-	if !tmp.Equal(nextMin) {
-		t.Errorf("unexpected time - wanted %v got %v\n", nextMin, tmp)
+	expected := time.Date(2015, 7, 1, 15, 5, 0, 0, loc)
+	result := Minute(t1)
+	if !result.Equal(expected) {
+		t.Errorf("unexpected time - wanted %v got %v\n", expected, result)
 	}
 }
 func TestHour(t *testing.T) {
-	nextHour := time.Date(2006, 1, 2, 16, 0, 0, 0, loc)
-	tmp := Hour(t1)
-	if !tmp.Equal(nextHour) {
-		t.Errorf("unexpected time - wanted %v got %v\n", nextHour, tmp)
+	expected := time.Date(2015, 7, 1, 16, 0, 0, 0, loc)
+	result := Hour(t1)
+	if !result.Equal(expected) {
+		t.Errorf("unexpected time - wanted %v got %v\n", expected, result)
 	}
 }
 
 func TestDay(t *testing.T) {
-	nextDay := time.Date(2006, 1, 3, 0, 0, 0, 0, loc)
-	tmp := Day(t1)
-	if !tmp.Equal(nextDay) {
-		t.Errorf("unexpected time - wanted %v got %v\n", nextDay, tmp)
+	expected := time.Date(2015, 7, 2, 0, 0, 0, 0, loc)
+	result := Day(t1)
+	if !result.Equal(expected) {
+		t.Errorf("unexpected time - wanted %v got %v\n", expected, result)
+	}
+	t2 := time.Date(2015, 7, 1, 11, 12, 0, 0, loc)
+	expected = time.Date(2015, 7, 2, 0, 0, 0, 0, loc)
+	result = Day(t2)
+	if !result.Equal(expected) {
+		t.Errorf("unexpected time - wanted %v got %v\n", expected, result)
 	}
 }
 
 func TestWeek(t *testing.T) {
-	nextWeek := time.Date(2006, 1, 8, 0, 0, 0, 0, loc)
-	tmp := Week(t1)
-	if !tmp.Equal(nextWeek) {
-		t.Errorf("unexpected time - wanted %v got %v\n", nextWeek, tmp)
+	expected := time.Date(2015, 7, 5, 0, 0, 0, 0, loc)
+	result := Week(t1)
+	if !result.Equal(expected) {
+		t.Errorf("unexpected time - wanted %v got %v\n", expected, result)
 	}
 }
 
 func TestMonth(t *testing.T) {
-	nextMonth := time.Date(2006, 2, 1, 0, 0, 0, 0, loc)
-	tmp := Month(t1)
-	if !tmp.Equal(nextMonth) {
-		t.Errorf("unexpected time - wanted %v got %v\n", nextMonth, tmp)
+	nextMonth := time.Date(2015, 8, 1, 0, 0, 0, 0, loc)
+	result := Month(t1)
+	if !result.Equal(nextMonth) {
+		t.Errorf("unexpected time - wanted %v got %v\n", nextMonth, result)
 	}
 }
