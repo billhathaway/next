@@ -40,3 +40,11 @@ func TestWeek(t *testing.T) {
 		t.Errorf("unexpected time - wanted %v got %v\n", nextWeek, tmp)
 	}
 }
+
+func TestMonth(t *testing.T) {
+	nextMonth := time.Date(2006, 2, 1, 0, 0, 0, 0, loc)
+	tmp := Month(t1)
+	if !tmp.Equal(nextMonth) {
+		t.Errorf("unexpected time - wanted %v got %v\n", nextMonth, tmp)
+	}
+}
