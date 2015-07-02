@@ -48,9 +48,21 @@ func TestWeek(t *testing.T) {
 }
 
 func TestMonth(t *testing.T) {
-	nextMonth := time.Date(2015, 8, 1, 0, 0, 0, 0, loc)
+	expected := time.Date(2015, 8, 1, 0, 0, 0, 0, loc)
 	result := Month(t1)
-	if !result.Equal(nextMonth) {
-		t.Errorf("unexpected time - wanted %v got %v\n", nextMonth, result)
+	if !result.Equal(expected) {
+		t.Errorf("unexpected time - wanted %v got %v\n", expected, result)
+	}
+	starting := time.Date(2015, 12, 15, 0, 0, 0, 0, loc)
+	expected = time.Date(2016, 1, 1, 0, 0, 0, 0, loc)
+	result = Month(starting)
+	if !result.Equal(expected) {
+		t.Errorf("unexpected time - wanted %v got %v\n", expected, result)
+	}
+	starting = time.Date(2015, 1, 28, 0, 0, 0, 0, loc)
+	expected = time.Date(2015, 2, 1, 0, 0, 0, 0, loc)
+	result = Month(starting)
+	if !result.Equal(expected) {
+		t.Errorf("unexpected time - wanted %v got %v\n", expected, result)
 	}
 }
